@@ -1,5 +1,8 @@
 # Levitation Decentralized ZK rollup sequencer
 
+![image](https://github.com/skalenetwork/levitation_decentralized_zk_sequencer/assets/13399135/305c8690-6627-4d4a-bf34-b033ced8bf9c)
+
+
 ## Three challenges Levitation solves
 
 **ZK-rollups** (ZKRs) are **Layer 2 solutions** that use cutting edge mathematics of **ZK proofs** to **execute** and **prove** transactions in ZK-EVMs outside of Ethereum mainnet, and then
