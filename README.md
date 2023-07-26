@@ -33,23 +33,9 @@ Here are the three main advantages of Levitation
 We target the maximum simplicity and ETH-compatibility of the protocol, so it can run on a wide variety of existing and new ETH-compatible blockchains.
 
 
-```markmap
-# Levitation Protocol
+![image](https://github.com/skalenetwork/levitation_decentralized_zk_sequencer/assets/13399135/59ccb957-f1f2-4f86-a23f-227f8f339754)
 
-## Decentralization
 
-- running on blockchain
-- implemented as smartcontracts
-
-## Interoperability and Modularity
-
-- Turns existing ZKRs into pluggable modules
-- Uses standard Solidity tools and libraries
-
-## Common security
-- Can run multiple ZK-rollups on a single Levitation chain
-- Provides common transactions ledger and state info
-```
 
 
 ## Protocol overview
@@ -57,23 +43,7 @@ We target the maximum simplicity and ETH-compatibility of the protocol, so it ca
 
 Existing ZKRs implement six stages:
 
-```markmap
-# ZKR
-
-## Transaction submission
-
-## Pending queue
-
-## Sequence transactions
-
-
-## Execute and prove
-
-## Relay to mainnet
-
-## Verify ZK-proofs
-
-```
+![image](https://github.com/skalenetwork/levitation_decentralized_zk_sequencer/assets/13399135/280a65b8-3896-4769-90f3-227aaf6891b7)
 
 
 1. **Submission**: users submit transactions
@@ -94,23 +64,15 @@ The diagrams below illustrate execution of **two ZKRs (ZKR1 and ZKR2)** before a
 **Before Levitation**, each of the ZKRs implements the six stages
 
 
-```mermaid
-graph LR;
-    Z1[ZKR1 submit]-->A1[ZKR1 Queue] --> B1[ZKR1 Sequence] --> C1[ZKR1 Execute and Prove]--> D1[ZKR1 Relay]--> E1[ZKR1 Verify];
-    Z2[ZKR2 submit]-->A2[ZKR2 Queue] --> B2[ZKR2 Sequence] --> C2[ZKR1 Execute and Prove]--> D2[ZKR2 Relay]--> E2[ZKR2 Verify];
-```
+![image](https://github.com/skalenetwork/levitation_decentralized_zk_sequencer/assets/13399135/cc9bffbc-3b19-44df-a544-3fad8603c1cf)
 
 **After Levitation**, each ZKR needs to **implement stage 4 and 6 as a Levitation module**, while the **remaining stages are implemented by Levitation**.
 
 In other words, Levitation handles **transaction acceptance, ordering, and network relay**, while ZKRs handle ZK-related operations **(execution, proving and verification)**.
 
 
-```mermaid
-graph LR;
-    Z1[Levitation Submit]-->|txs| A1[Levitation Queue] -->|txs| B1[Levitation Sequence] -->|candidates| C1[ZKR1 Execute and Prove]-->|blocks| D1[Levitation Relay]--> E1[ZKR1 Verify];
-    B1 -->|candidates| C2[ZKR2 Execute and Prove]-->|blocks| D1[Levitation Relay]--> E2[ZKR2 Verify];
-    
-```
+![image](https://github.com/skalenetwork/levitation_decentralized_zk_sequencer/assets/13399135/9e8426be-c965-4bb8-a617-7b04744683b2)
+
 
 
 ## Minimalistic design
@@ -136,12 +98,8 @@ When running on a Levitation-enabled chain, Dapps can **utilize the Levitation c
 
 To enable this functionality Levitation introduces programming abstractions of **ZKChain** and **FastChain**. 
 
-```markmap
-# Levitation
+![image](https://github.com/skalenetwork/levitation_decentralized_zk_sequencer/assets/13399135/fd348734-fcdb-4f76-a9d8-262d6c901731)
 
-## ZKChain: high security transactions, equivalent to ETH mainnet
-## FastChain: fast interactive transactions
-```
 
 
 Dapps running on a Levitation-enabled chain see Levitation as two chains **ZKChain** and **FastChain**, connected by a bridge. Dapps can take advantage of high security of **ZKChain** and high performance of **FastChain**.
@@ -164,11 +122,9 @@ A user:
 * User **decrypts the transaction** just before the candidate block is passed to Stage 4
 * Since at this point the transaction is decrypted, **Stage 4, 5, and 6 are executed on the plaintext transaction**. 
 
-```mermaid
-graph LR;
-    A1[User encrypts and submit tx] --> B1[tx included in candidate block ] --> C1[User decrypts tx before Execute and Prove phase]   
-```
-    
+![image](https://github.com/skalenetwork/levitation_decentralized_zk_sequencer/assets/13399135/32b997e0-9e7d-4509-9274-4f809cf738e0)
+
+ 
 
 Since the transaction **is decrypted after it has been included in a block candidate**, the user is protected against front running and MEV. In particular, it is **too late** for other users to insert transactions in front of the user transaction.
 
